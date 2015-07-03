@@ -8,12 +8,6 @@ package {['emacs', 'vim', 'make', 'git', 'wget', 'unzip', 'bzip2', 'alien', 'lib
   require => Exec['update'],
 }
 
-exec { 'aleph':
-  command => 'git clone https://github.com/tehn/aleph.git',
-  path => '/usr/bin',
-  require => Package['git'],
-}
-
 exec { 'get_jansson':
   command => 'cp /vagrant/libjansson.tar.gz /home/vagrant',
   path => '/bin',
@@ -75,5 +69,5 @@ exec { 'setup_avr32':
 exec { 'chown':
   command => 'chown -R vagrant.vagrant /home/vagrant',
   path => '/bin',
-  require => [ Exec['setup_avr32'], Exec['aleph'] ],
+  require => [ Exec['setup_avr32'] ],
 }
